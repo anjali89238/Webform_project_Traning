@@ -1,0 +1,124 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="MarksForm.aspx.cs" Inherits="WebApplication1.WebForm2" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+
+        <div>
+
+            Subject
+            <asp:DropDownList ID="ddlSubject" runat="server">
+                 <asp:ListItem Value="English">English</asp:ListItem>
+                 <asp:ListItem Value="Maths">Maths</asp:ListItem>
+                <asp:ListItem Value="Science">Science</asp:ListItem>
+                <asp:ListItem Value="Social Science">Social Science</asp:ListItem>
+                <asp:ListItem Value="Hindi">Hindi</asp:ListItem>
+
+            </asp:DropDownList>
+
+            <asp:RequiredFieldValidator ID="rfvSubject" runat="server" ErrorMessage="Select the Subject" ControlToValidate="ddlSubject"></asp:RequiredFieldValidator>
+            <br />
+            Max Marks
+            <asp:TextBox ID="txtMaxMarks" runat="server" OnTextChanged="txtMaxMarks_TextChanged" MaxLength="3" ></asp:TextBox>
+                  <ajaxToolkit:FilteredTextBoxExtender
+          ID="ftbeMaxMarks"
+          runat="server"
+          TargetControlID="txtMaxMarks"
+          FilterType="Numbers" />
+            
+<asp:Label ID="lblMaxError" runat="server" ForeColor="Red"></asp:Label>
+            <asp:RequiredFieldValidator ID="rfvMaxMarks" runat="server" ErrorMessage="Enter the Maximun Marks" ForeColor="red" ControlToValidate="txtMaxMarks"></asp:RequiredFieldValidator><br />
+            <asp:RegularExpressionValidator ID="revMaxMarks" runat="server" ErrorMessage="Enter  Numbers upto 100 only" ControlToValidate="txtMaxMarks" ValidationExpression="^(100|[1-9]?[0-9])$" ForeColor="red"></asp:RegularExpressionValidator>
+        </div>
+        <%--======================Grid For marks Input====================--%>
+            <h1>Marks Table</h1>
+    <asp:GridView ID="MarksGridView1" runat="server" AutoGenerateColumns="false" DataKeyNames="ID" style="margin-right: 250px">
+
+<Columns>
+
+     <asp:BoundField DataField="Name" HeaderText="Name" />
+       <asp:TemplateField HeaderText="Marks">
+            <ItemTemplate> 
+              <ajaxToolkit:FilteredTextBoxExtender ID="ftbeMarks" runat="server" TargetControlID="txtMarks" ValidChars="01234564789." />
+
+          
+
+                <asp:TextBox ID="txtMarks" runat="server" CssClass="form-control" AutoPostBack="True" MaxLength="3" OnTextChanged="txtMarks_TextChanged"></asp:TextBox> 
+                      <br />
+          
+                <asp:Label ID="lblError" runat="server"></asp:Label>
+
+                <br />
+               <asp:RequiredFieldValidator ID="rfvmarks" runat="server" ErrorMessage="Fill the marks" ForeColor="red" ControlToValidate="txtMarks"></asp:RequiredFieldValidator> <br />
+               <asp:RegularExpressionValidator ID="revmarks" runat="server" ErrorMessage="Enter  Numbers upto 3 digits" ControlToValidate="txtMarks" ValidationExpression="^(100|[1-9]?[0-9])$" ForeColor="red"></asp:RegularExpressionValidator>
+            </ItemTemplate>
+        </asp:TemplateField> 
+    
+</Columns>
+    </asp:GridView>
+
+        <asp:Button ID="btnSubmit" runat="server" Text="Submit"  OnClick="btnSubmit_Click"   />
+
+
+       <%--============================NESTED GRID===============================--%>
+        <h1>Nested Grid</h1>
+<asp:GridView ID="gvParent" runat="server" AutoGenerateColumns="false" OnRowDataBound="gvParent_RowDataBound" DataKeyNames="ID" style="margin-right: 250px">
+
+<Columns>
+
+  <asp:BoundField DataField="Name" HeaderText="Name" />
+  <asp:BoundField DataField="Email" HeaderText="Email" />
+  <asp:BoundField DataField="Mobile" HeaderText="Mobile" />
+  <asp:BoundField DataField="Gender" HeaderText="Gender" />
+  <asp:BoundField DataField="CityName" HeaderText="City" />
+  <asp:BoundField DataField="AdhaarNo" HeaderText="AdhaarNo" />
+      <asp:TemplateField HeaderText="Marks">
+            <ItemTemplate>
+                <asp:GridView ID="gvChild" runat="server" AutoGenerateColumns="False" OnRowCommand="deleteChildGridRow" >
+
+                    <Columns>
+                        <asp:BoundField DataField="MID" HeaderText="MID" Visible="false" />
+
+                        <asp:BoundField DataField="Subject" HeaderText="Subject" />
+                        <asp:BoundField DataField="Marks" HeaderText="Marks" />
+                         <asp:TemplateField HeaderText="Action">
+     <ItemTemplate>
+         <asp:Button ID="btnDelete"  runat="server"  CommandName="deleteRow" CommandArgument='<%# Eval("MID") %>'   OnClientClick="return confirm('Do you want to delete this row?');" CausesValidation="false" Text="Delete" />
+         
+     </ItemTemplate>
+ </asp:TemplateField>
+                    </Columns>
+
+                </asp:GridView>
+            </ItemTemplate>
+        </asp:TemplateField>
+
+      
+    
+</Columns>
+    </asp:GridView>
+
+
+                    <h1>Report Marks Table</h1>
+    <asp:GridView ID="ReportGridView1" runat="server"  AutoGenerateColumns="false"  style="margin-right: 250px">
+
+<Columns>
+     
+     <asp:BoundField DataField="Name" HeaderText="Name" />
+     <asp:BoundField DataField="Subject" HeaderText="Subject" />
+     <asp:BoundField DataField="Marks" HeaderText="Marks" />
+         <asp:BoundField  DataField="Percentage" HeaderText="Percentage" />
+         <asp:BoundField DataField="RankNo" HeaderText="Rank" />
+
+</Columns>
+    </asp:GridView>
+
+    </form>
+
+</body>
+</html>

@@ -1,0 +1,206 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+@model List<WebApplication1.Models.Register>
+<main>
+    <section class="row" aria-labelledby="aspnetTitle">
+        <h1 id="title">ASP.NET</h1>
+        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
+        <p><a href="https://asp.net" class="btn btn-primary btn-md">Learn more &raquo;</a></p>
+    </section>
+
+    <div class="">
+
+
+        <form action="/Home/Index" method="post" enctype="multipart/form-data">
+
+            <label for="Name">Name :</label>
+            <input type="text" id="Name" name="Name" required />            <br />
+            <span class="text-danger" data-val="Name"></span>
+
+            <br />
+
+            <label for="Email">Email :</label>
+            <input type="email" id="Email" name="Email" required />   <br />
+
+            <span class="text-danger" data-val="Email"></span>   <br />
+
+            <label for="Mobile">Mobile :</label>
+            <input type="tel" id="Mobile" name="Mobile" required />   <br />
+
+            <span class="text-danger" data-val="Mobile"></span>            <br />
+
+            <label>Gender :</label><br />
+
+            <input type="radio" id="Male" name="Gender" required />
+            <label for="Male">Male</label>
+
+            <input type="radio" id="Female" name="Gender" required />
+            <label for="Female">Female</label>            <br />
+
+            <span class="text-danger" data-val="Gender"></span>            <br />
+
+            <label for="City">City :</label>
+            <input type="text" id="City" name="City" required />             <br />
+
+            <span class="text-danger" data-val="City"></span>
+            <br />
+
+            <label for="Image">Image :</label>
+            <input type="file" id="Image" name="Image" required />             <br />
+            <span class="text-danger" data-val="Image"></span>
+
+            <br />
+
+            <label for="AdharNo">Adhar No :</label>
+            <input type="text" id="AdharNo" name="AdharNo" required />             <br />
+
+            <span class="text-danger" data-val="AdharNo"></span>            <br />
+
+            <button type="submit">Submit</button>
+        </form>
+
+        @if (TempData["Success"] != null)
+        {
+            <script>
+        alert('@TempData["Success"]');
+            </script>
+        }
+
+
+        <h2>Registration Details</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Mobile</th>
+                    <th>Gender</th>
+                    <th>City</th>
+                    <th>Image</th>
+                    <th>AdhaarNo</th>
+
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @item.Name
+                        </td>
+                        <td>
+                            @item.Email
+                        </td>
+                        <td>
+                            @item.Mobile
+                        </td>
+                        <td>
+                            @item.Gender
+                        </td>
+                        <td>
+                            @item.City
+                        </td>
+                        <td>
+                            @if (!string.IsNullOrEmpty(item.Image))
+                            {
+                                <img src="~/Uploads/@item.Image" width="60" height="60" />
+                            }
+                        </td>
+                        <td>
+                            @item.AdharNo
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+
+
+
+        @*===================================*@
+        <script>
+            function validateForm(event) {
+                let isValid = true;
+
+                // Clear previous error messages
+                document.querySelectorAll(".text-danger").forEach(span => span.innerText = "");
+
+                // Name
+                let name = document.getElementById("Name").value.trim();
+                if (name === "") {
+                    document.querySelector("[data-val='Name']").innerText = "Name is required";
+                    isValid = false;
+                }
+
+                let email = document.getElementById("Email").value.trim();
+                let emailPattern = /^[^ ]+@@[^ ]+\.[a-z]{2,3}$/;
+
+                if (!emailPattern.test(email)) {
+                    document.querySelector("[data-val='Email']").innerText = "Enter a valid email";
+                    isValid = false;
+                }
+
+                // Mobile
+                let mobile = document.getElementById("Mobile").value.trim();
+                let mobilePattern = /^[0-9]{10}$/;
+                if (!mobilePattern.test(mobile)) {
+                    document.querySelector("[data-val='Mobile']").innerText = "Enter a valid 10-digit number";
+                    isValid = false;
+                }
+
+                // Gender
+                let genderMale = document.getElementById("Male").checked;
+                let genderFemale = document.getElementById("Female").checked;
+                if (!genderMale && !genderFemale) {
+                    document.querySelector("[data-val='Gender']").innerText = "Select gender";
+                    isValid = false;
+                }
+
+                // City
+                let city = document.getElementById("City").value.trim();
+                if (city === "") {
+                    document.querySelector("[data-val='City']").innerText = "City is required";
+                    isValid = false;
+                }
+
+                // Image
+                let image = document.getElementById("Image").value.trim();
+                if (image === "") {
+                    document.querySelector("[data-val='Image']").innerText = "Upload image";
+                    isValid = false;
+                }
+
+                // AdharNo
+                let adhar = document.getElementById("AdharNo").value.trim();
+                if (adhar.length !== 12 || isNaN(adhar)) {
+                    document.querySelector("[data-val='AdharNo']").innerText = "Enter valid 12-digit Aadhar";
+                    isValid = false;
+                }
+
+                // Stop form submit if validation fails
+                if (!isValid) {
+                    event.preventDefault();
+                }
+
+                if (!isValid) {
+                    event.preventDefault();
+                } else {
+                    // Show alert if form is valid
+                    alert("Details added successfully!");
+                }
+
+
+            }
+
+            // Attach validation to form submit
+            document.querySelector("form").addEventListener("submit", validateForm);
+
+        </script>
+
+
+
+    </div>
+</main>
