@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AjaxControlToolkit;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -18,6 +19,7 @@ namespace WebApplication1
             this.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
             if (!IsPostBack)
             {
+                mpWelcome.Show();
 
                 MarksGridView1_RowCommand();
                 //MarksGridView2_RowCommand();
@@ -128,7 +130,7 @@ namespace WebApplication1
                 string studentName = row.Cells[0].Text;
                 TextBox txtMarks = (TextBox)row.FindControl("txtMarks");
 
-                int marks = int.Parse(txtMarks.Text);
+                decimal marks = decimal.Parse(txtMarks.Text);
 
                 using (SqlConnection con = new SqlConnection(cs))
                 {
@@ -173,21 +175,27 @@ namespace WebApplication1
 
         protected void txtMarks_TextChanged(object sender, EventArgs e)
         {
+            
             TextBox txt = sender as TextBox;
             GridViewRow row = (GridViewRow)txt.NamingContainer;
 
             Label lbl = row.FindControl("lblError") as Label;
 
-            int marks;
-            if (int.TryParse(txt.Text, out marks))
+            decimal marks;
+            if (decimal.TryParse(txt.Text, out marks))
             {
-                if (marks > 100)
+                int maxMarks = 0;
+                int.TryParse(txtMaxMarks.Text, out maxMarks);
+
+                if (marks > maxMarks)
                 {
-                    lbl.Text = "Marks cannot exceed 100";
+                    lbl.Text = "Marks cannot exceed" +maxMarks ;
                     lbl.ForeColor = System.Drawing.Color.Red;
+                    txt.Text = "";
                 }
 
-                else
+                else 
+
                     lbl.Text = "";
             }
             else
@@ -204,9 +212,9 @@ namespace WebApplication1
             int maxMarks;
             if (int.TryParse(txtMaxMarks.Text, out maxMarks))
             {
-                if (maxMarks > 100)
+                if (maxMarks > 500)
                 {
-                    lblMaxError.Text = "Maximum marks cannot exceed 100.";
+                    lblMaxError.Text = "Maximum marks cannot exceed 500.";
                     lblMaxError.ForeColor = System.Drawing.Color.Red;
                 }
                 else
@@ -221,18 +229,41 @@ namespace WebApplication1
             }
         }
 
+        //protected void deleteChildGridRow(object sender, GridViewCommandEventArgs e)
+        //{
+
+        //    int mid = Convert.ToInt32(e.CommandArgument);
+        //    if (e.CommandName == "deleteRow")
+        //    {
+        //        deleteNestedGridRow(mid);
+        //        ParenGridView_RowCommand();
+        //    }
+
+        //}
+
         protected void deleteChildGridRow(object sender, GridViewCommandEventArgs e)
         {
-
             int mid = Convert.ToInt32(e.CommandArgument);
+
+            // STEP 1: Show popup when Delete button is clicked
             if (e.CommandName == "deleteRow")
             {
+                GridViewRow row = (e.CommandSource as Control).NamingContainer as GridViewRow;
+
+                ModalPopupExtender mp = (ModalPopupExtender)row.FindControl("mpDeletePopup");
+                mp.Show();
+            }
+
+            // STEP 2: Perform delete only on Yes button click
+            else if (e.CommandName == "confirmDelete")
+            {
                 deleteNestedGridRow(mid);
+
+                // Refresh parent grid
                 ParenGridView_RowCommand();
             }
         }
 
-        
         protected void deleteNestedGridRow(int mid)
         {
             string cs = ConfigurationManager.ConnectionStrings["con"].ConnectionString;
@@ -247,6 +278,10 @@ namespace WebApplication1
             }
         
         }
+
+
+
+     
 
 
     }

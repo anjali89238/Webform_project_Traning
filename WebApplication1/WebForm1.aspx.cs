@@ -121,8 +121,6 @@ namespace WebApplication1
         }
         
  
-
-
         protected void getRowforUpdation(int id)
         {
             string cs = ConfigurationManager.ConnectionStrings["con"].ConnectionString;
