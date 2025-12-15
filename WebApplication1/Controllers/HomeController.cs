@@ -91,9 +91,10 @@ namespace WebApplication1.Controllers
                 cmd.Parameters.AddWithValue("@Email", "");
                 cmd.Parameters.AddWithValue("@Mobile", "");
                 cmd.Parameters.AddWithValue("@Gender", "");
-                cmd.Parameters.AddWithValue("@City", "");
+                cmd.Parameters.AddWithValue("@CityID", "");
                 cmd.Parameters.AddWithValue("@Image", "");
                 cmd.Parameters.AddWithValue("@AdhaarNo", "");
+                cmd.Parameters.AddWithValue("@ID", "");
                 cmd.Parameters.AddWithValue("@Transaction", 'G');
 
                 con.Open();
@@ -107,7 +108,7 @@ namespace WebApplication1.Controllers
                         Email = dr["Email"].ToString(),
                         Mobile = dr["Mobile"].ToString(),
                         Gender = dr["Gender"].ToString(),
-                        City = dr["City"].ToString(),
+                        City = dr["CityID"].ToString(),
                         Image = dr["Image"].ToString(),
                         AdharNo = dr["AdhaarNo"].ToString()
                     });

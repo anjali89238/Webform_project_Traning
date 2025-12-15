@@ -1,4 +1,5 @@
 ﻿using AjaxControlToolkit;
+using Microsoft.Reporting.WebForms;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -26,6 +27,7 @@ namespace WebApplication1
                 ParenGridView_RowCommand();
 
                 BindGrid3();
+                BindReport();
             }
         }
 
@@ -105,7 +107,6 @@ namespace WebApplication1
             {
                 SqlCommand cmd = new SqlCommand("SELECT * from TblMarks where RID=@RID", con);
         
-
                 cmd.Parameters.AddWithValue("@RID", studentId);
 
                 con.Open();
@@ -117,6 +118,56 @@ namespace WebApplication1
                 gvChild.DataBind();
             }
         }
+
+
+        private void BindReport()
+        {
+
+            DataTable dt1 = new DataTable();
+           
+            dt1.Columns.Add("Name");
+            dt1.Columns.Add("Age");
+            dt1.Columns.Add("DOJ");
+            dt1.Columns.Add("Salary");
+            dt1.Columns.Add("Designation");
+            
+            dt1.Rows.Add( "Arun Singh", "21",  "01-01-2025","800000","Developer" );
+            dt1.Rows.Add( "sonu Singh", "23",  "03-01-2025","200000","SalesMan" );
+            dt1.Rows.Add( "Kapil sharma", "31",  "11-01-2025","200000","HR" );
+            dt1.Rows.Add( "Manu Singh", "28",  "09-01-2025","500000","Manager" );
+
+
+
+            string cs = ConfigurationManager.ConnectionStrings["Con"].ConnectionString;
+            DataTable dt2 = new DataTable();
+            using (SqlConnection conn = new SqlConnection(cs)) {
+                SqlCommand cmd = new SqlCommand("Select Name, Marks, Subject, MaxMarks, RID from TblMarks", conn);
+                SqlDataAdapter da= new SqlDataAdapter(cmd);
+                da.Fill(dt2);
+
+            }
+
+
+
+
+            ReportViewer1.ProcessingMode = ProcessingMode.Local;
+            ReportViewer1.LocalReport.ReportPath = Server.MapPath("~/Reports/Report1.rdlc");
+            ReportViewer1.LocalReport.DataSources.Clear();
+
+            ReportDataSource rds = new ReportDataSource("DataSet1", dt1);
+
+            ReportDataSource rds2 = new ReportDataSource("DataSet2", dt2);
+            ReportViewer1.LocalReport.DataSources.Add(rds);
+            ReportViewer1.LocalReport.DataSources.Add(rds2);
+
+            ReportViewer1.LocalReport.Refresh();
+
+
+        }
+
+
+
+     
 
 
         protected void btnSubmit_Click(object sender, EventArgs e)
@@ -278,6 +329,8 @@ namespace WebApplication1
             }
         
         }
+
+
 
 
 

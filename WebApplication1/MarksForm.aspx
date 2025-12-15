@@ -1,4 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="MarksForm.aspx.cs" Inherits="WebApplication1.WebForm2" %>
+
+<%@ Register Assembly="Microsoft.ReportViewer.WebForms" Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -229,7 +231,15 @@
             </Columns>
         </asp:GridView>
 
-    </form>
+         <rsweb:ReportViewer ID="ReportViewer1"
+                        runat="server"
+                        Width="100%"
+                        Height="100%"
+                        ProcessingMode="Local">
+        </rsweb:ReportViewer>
+         
 
+    </form>
+ 
 </body>
 </html>

@@ -58,7 +58,8 @@
                 ErrorMessage="Invalid Mobile Number!"
                 ForeColor="Red"
                 ValidationExpression="^[0-9]{10}$">
-            </asp:RegularExpressionValidator>
+            </asp:RegularExpressionValidator> 
+
 
 
             <br />

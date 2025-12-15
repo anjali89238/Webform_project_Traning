@@ -155,6 +155,8 @@ namespace WebApplication1
                     {
                         ddlCity.SelectedValue = cityId;
                     }
+
+
                     imgPreview.ImageUrl = "~/uploads/" + dr["Image"].ToString();
                     txtAdhaar.Text = dr["AdhaarNo"].ToString();
                     hfID.Value = id.ToString();
@@ -334,7 +336,7 @@ namespace WebApplication1
                 ddlCity.DataTextField = "CityName";   // What user sees
                 ddlCity.DataValueField = "CID";    // ID stored internally
                 ddlCity.DataBind();
-                dr.Close();
+                dr.Close(); 
             }
 
             // Insert first empty item
