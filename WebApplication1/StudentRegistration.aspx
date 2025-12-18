@@ -159,7 +159,6 @@
    
    </asp:TextBox>
 
-
             <ajaxToolkit:FilteredTextBoxExtender
                 ID="ftbeMobile"
                 runat="server"
@@ -227,7 +226,7 @@
 
         </div>
          <rsweb:ReportViewer ID="ReportViewer1" Width="100%" Height="800px" runat="server" ProcessingMode="Local"></rsweb:ReportViewer>
-         <rsweb:ReportViewer ID="ReportViewer2" Width="100%" Height="800px" runat="server" ProcessingMode="Local" onSubreportProcessing="BindStudentSubreport">
+         <rsweb:ReportViewer ID="ReportViewer2" Width="100%" Height="800px" runat="server" ProcessingMode="Local">
 
 
          </rsweb:ReportViewer>

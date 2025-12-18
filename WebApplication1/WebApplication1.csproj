@@ -162,6 +162,18 @@
     </Compile>
     <Compile Include="Models\Register.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReportTest.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReportTest.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ReportWebForm.aspx.cs">
+      <DependentUpon>ReportWebForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReportWebForm.aspx.designer.cs">
+      <DependentUpon>ReportWebForm.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="StudentRegistration.aspx.cs">
       <DependentUpon>StudentRegistration.aspx</DependentUpon>
@@ -195,6 +207,20 @@
     </Compile>
     <Compile Include="WebForm4.aspx.designer.cs">
       <DependentUpon>WebForm4.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForm5.aspx.cs">
+      <DependentUpon>WebForm5.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm5.aspx.designer.cs">
+      <DependentUpon>WebForm5.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForm6.aspx.cs">
+      <DependentUpon>WebForm6.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm6.aspx.designer.cs">
+      <DependentUpon>WebForm6.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -283,6 +309,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="registration_Report.aspx" />
+    <Content Include="ReportWebForm.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -320,6 +347,8 @@
       <DependentUpon>Employes.xsd</DependentUpon>
     </Content>
     <Content Include="WebForm4.aspx" />
+    <Content Include="WebForm5.aspx" />
+    <Content Include="WebForm6.aspx" />
     <None Include="Employes.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
@@ -327,6 +356,17 @@
     </None>
     <Content Include="Employes.xss">
       <DependentUpon>Employes.xsd</DependentUpon>
+    </Content>
+    <Content Include="ReportTest.xsc">
+      <DependentUpon>ReportTest.xsd</DependentUpon>
+    </Content>
+    <None Include="ReportTest.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ReportTest.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="ReportTest.xss">
+      <DependentUpon>ReportTest.xsd</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
@@ -402,6 +442,9 @@
     <EmbeddedResource Include="Reports\Report2.rdlc" />
     <EmbeddedResource Include="Reports\StudentRegistrationReport.rdlc" />
     <EmbeddedResource Include="Reports\StudentRegistrationSubReport.rdlc" />
+    <EmbeddedResource Include="Reports\TestReport4.rdlc" />
+    <EmbeddedResource Include="Reports\TestSubReport4.rdlc" />
+    <EmbeddedResource Include="ReportTest.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -98,17 +98,7 @@ namespace WebApplication1
 
 
 
-
-
-
-
-
         //}
-
-
-
-
-
 
         //protected void btnSave_Click(object sender, EventArgs e)
         //{
@@ -154,7 +144,6 @@ namespace WebApplication1
         //        }
         //    }
         //}
-
 
 
         protected void BindGrid()
@@ -362,6 +351,8 @@ namespace WebApplication1
 
         //}
 
+
+
         protected void btn_Update(object sender, EventArgs e)
         {
             int role = Convert.ToInt32(ddlRoles.SelectedValue);
@@ -380,8 +371,6 @@ namespace WebApplication1
                     cmdDel.Parameters.AddWithValue("@Transaction", 'D');
                     cmdDel.ExecuteNonQuery();
                 }
-
-
 
                 foreach (ListItem item in cblPageMaster.Items)
                 {
@@ -463,7 +452,7 @@ namespace WebApplication1
                 }
             }
             LoadRoles();
-        }
+        } 
 
     }
 }

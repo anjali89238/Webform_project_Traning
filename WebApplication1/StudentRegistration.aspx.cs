@@ -23,12 +23,13 @@ namespace WebApplication1
               
                 LoadClass();
                 LoadSession();
-
+                LoadCategory();
                 LoadBloodGroup();
                 LoadReligion();
                 BindStudentReport();
+
                 BindMultipleReport();
-                LoadCategory();
+             
               
 
             }
@@ -189,9 +190,6 @@ namespace WebApplication1
          
             ddlCityState.Items.Insert(0, new ListItem("-- Select City --", ""));
         }
-
-
-
 
         protected void ddlState_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -403,6 +401,7 @@ namespace WebApplication1
             ReportViewer2.LocalReport.DataSources.Add(rds);
             ReportViewer2.LocalReport.Refresh();
         }
+         
 
         public  void BindStudentSubreport(object sender, SubreportProcessingEventArgs e)
         {
@@ -416,7 +415,7 @@ namespace WebApplication1
                 cmd.Parameters.AddWithValue("@FormNo", formNo);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(d1);
-;            }
+;           }
 
             //ReportViewer2.ProcessingMode = ProcessingMode.Local;
             //ReportViewer2.LocalReport.ReportPath = Server.MapPath("~/Reports/StudentRegistrationSubReport.rdlc");
@@ -428,7 +427,6 @@ namespace WebApplication1
             e.DataSources.Add(new ReportDataSource("DataSet1", d1));
 
 
-            //ReportViewer2.LocalReport.Refresh();
         }
 
     }

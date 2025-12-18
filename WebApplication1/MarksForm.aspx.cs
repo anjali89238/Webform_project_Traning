@@ -13,7 +13,7 @@ using System.Web.UI.WebControls;
 using System.Xml.Linq;
 namespace WebApplication1 
 {
-    public partial class WebForm2 : System.Web.UI.Page
+    public partial class WebForm2 : System.Web.UI.Page 
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -30,10 +30,6 @@ namespace WebApplication1
                 BindReport();
             }
         }
-
-
-
-
 
 
         protected void MarksGridView1_RowCommand ()
@@ -74,7 +70,6 @@ namespace WebApplication1
 
                 SqlCommand cmd = new SqlCommand("SELECT R.ID, R.Name, R.Email, R.Mobile, R.Gender, C.CityName, R.AdhaarNo  FROM TblRegistration R   INNER JOIN TblCity C ON R.CityID = C.CID", conn);
              
-
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
 
                 DataTable dt = new DataTable();
@@ -97,6 +92,7 @@ namespace WebApplication1
                 BindChildGrid(gvChild, studentId);
             }
         }
+
 
 
         private void BindChildGrid(GridView gvChild, int studentId)
@@ -146,9 +142,6 @@ namespace WebApplication1
                 da.Fill(dt2);
 
             }
-
-
-
 
             ReportViewer1.ProcessingMode = ProcessingMode.Local;
             ReportViewer1.LocalReport.ReportPath = Server.MapPath("~/Reports/Report1.rdlc");
@@ -204,8 +197,6 @@ namespace WebApplication1
             Response.Write("<script>alert('Marks submitted successfully!');</script>");
         }
 
-
-       
         protected void BindGrid3()
         {
             string cs = ConfigurationManager.ConnectionStrings["con"].ConnectionString;
@@ -216,13 +207,10 @@ namespace WebApplication1
                 DataTable dt = new DataTable();
                 da.Fill(dt);
 
-               
                 ReportGridView1.DataSource = dt;
                 ReportGridView1.DataBind();
             }
         }
-
-   
 
         protected void txtMarks_TextChanged(object sender, EventArgs e)
         {
@@ -332,9 +320,6 @@ namespace WebApplication1
 
 
 
-
-
-     
 
 
     }
