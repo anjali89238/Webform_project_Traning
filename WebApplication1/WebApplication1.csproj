@@ -201,6 +201,27 @@
     <Compile Include="MarksForm.aspx.designer.cs">
       <DependentUpon>MarksForm.aspx</DependentUpon>
     </Compile>
+    <Compile Include="WebForm10.aspx.cs">
+      <DependentUpon>WebForm10.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm10.aspx.designer.cs">
+      <DependentUpon>WebForm10.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForm11Dashboard.aspx.cs">
+      <DependentUpon>WebForm11Dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm11Dashboard.aspx.designer.cs">
+      <DependentUpon>WebForm11Dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForm11Login.aspx.cs">
+      <DependentUpon>WebForm11Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm11Login.aspx.designer.cs">
+      <DependentUpon>WebForm11Login.aspx</DependentUpon>
+    </Compile>
     <Compile Include="WebForm4.aspx.cs">
       <DependentUpon>WebForm4.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -221,6 +242,27 @@
     </Compile>
     <Compile Include="WebForm6.aspx.designer.cs">
       <DependentUpon>WebForm6.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Webform7.aspx.cs">
+      <DependentUpon>Webform7.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Webform7.aspx.designer.cs">
+      <DependentUpon>Webform7.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForm8.aspx.cs">
+      <DependentUpon>WebForm8.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm8.aspx.designer.cs">
+      <DependentUpon>WebForm8.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForm9.aspx.cs">
+      <DependentUpon>WebForm9.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm9.aspx.designer.cs">
+      <DependentUpon>WebForm9.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -346,9 +388,15 @@
     <Content Include="Employes.xsc">
       <DependentUpon>Employes.xsd</DependentUpon>
     </Content>
+    <Content Include="WebForm10.aspx" />
+    <Content Include="WebForm11Dashboard.aspx" />
+    <Content Include="WebForm11Login.aspx" />
     <Content Include="WebForm4.aspx" />
     <Content Include="WebForm5.aspx" />
     <Content Include="WebForm6.aspx" />
+    <Content Include="Webform7.aspx" />
+    <Content Include="WebForm8.aspx" />
+    <Content Include="WebForm9.aspx" />
     <None Include="Employes.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>

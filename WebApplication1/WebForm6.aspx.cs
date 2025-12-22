@@ -40,8 +40,6 @@ namespace WebApplication1
         //    }
         //}
 
-
-
         protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
@@ -136,6 +134,7 @@ namespace WebApplication1
         //    return dt.Rows.Count>0 ? dt.Rows[0] : null;
 
         //}
+
         public DataRow GetFacultyData(int lecId)
         {
 
