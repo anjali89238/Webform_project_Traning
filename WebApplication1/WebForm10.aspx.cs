@@ -21,9 +21,27 @@ namespace WebApplication1
 
         }
 
-        
 
+        public string GenerateRandomPassword(int length)
+        {
+            string varcharPass = "abcdefijklmnopqrstuvwxyzABCDEFIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()_+-?/.,<>;:|{}[]";
+            Random rand = new Random();
+            string arr = "";
+            for (int i = 0; i < length; i++)
+            {
+                arr = arr + varcharPass[rand.Next(0, varcharPass.Length)];
+            }
+            return arr;
 
+        }
+
+        public string GenerateUserId(string name)
+        {
+            string prefix = name.Length > 3 ? name.Substring(0, 3).ToUpper() : name.ToUpper();
+            Random rand= new Random();
+            string username= prefix+rand.Next(1000,9999).ToString();
+            return username;
+        }
 
             protected void Rg_submit(object sender, EventArgs e)
             {
@@ -55,28 +73,29 @@ namespace WebApplication1
                 }
             }
 
-            private string GenerateUserId(string name)
-            {
-                string prefix = name.Length >= 3 ? name.Substring(0, 3).ToUpper() : name.ToUpper();
-                Random rand = new Random();
-                return prefix + rand.Next(1000, 9999).ToString();
-            }
 
-        private string GenerateRandomPassword(int length)
-        {
-             string validChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()"; 
-            Random rand = new Random();
+            //private string GenerateUserId(string name)
+            //{
+            //    string prefix = name.Length >= 3 ? name.Substring(0, 3).ToUpper() : name.ToUpper();
+            //    Random rand = new Random();
+            //    return prefix + rand.Next(1000, 9999).ToString();
+            //}
 
-            char[] chars = new char[length];
-            for (int i = 0; i < length; i++)
-            {
-                chars[i] = validChars[rand.Next(0, validChars.Length)];
-            }
-            string password = new string(chars);
-            return password;
+        //private string GenerateRandomPassword(int length)
+        //{
+        //     string validChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()"; 
+        //    Random rand = new Random();
+
+        //    char[] chars = new char[length];
+        //    for (int i = 0; i < length; i++)
+        //    {
+        //        chars[i] = validChars[rand.Next(0, validChars.Length)];
+        //    }
+        //    string password = new string(chars);
+        //    return password;
 
            
-        }
+        //}
 
 
         //private string GenerateRandomPassword(int length)

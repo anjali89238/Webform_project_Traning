@@ -14,7 +14,10 @@ namespace WebApplication1
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["Name"] != null)
+            {
+                Response.Redirect("WebForm11Dashboard.aspx");
+            }
         }
 
         public void Btn_Login(object sender, EventArgs e)
@@ -41,6 +44,7 @@ namespace WebApplication1
 
                 
             }
+
             if(uId==userId && pass== password)
             {
                 labelLogin.Text = "Login successful";
